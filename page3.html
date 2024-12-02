@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+
+    <style>
+        /* Make the body and html take the full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('creativeblock.gif') no-repeat center center fixed;
+            background-size: 75% auto;  /* Ensure the GIF covers the whole screen */
+            background-position: center 30px;  /* Move the background down by 30px */
+            margin: 0;
+        }
+
+        /* Header image styling */
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Button 1 (canvas) (buttonplaceholder1.png) positioning */
+        .buttonplaceholder1-btn {
+            position: absolute;
+            bottom: 25px;   /* Position the button at 20px from the bottom */
+            right: -200px;    /* Position it 20px from the right edge */
+            z-index: 100;    /* Ensure the button is on top */
+        }
+
+        .buttonplaceholder1-btn img {
+            width: 50%;  /* Set button size to 50% smaller */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+
+        /* Button 2 (obscene) (buttonplaceholder2.png) positioned 100px above the first button */
+        .buttonplaceholder2-btn {
+            position: absolute;
+            bottom: 80px;  /* Position it 100px above the first button (20px + 100px) */
+            right: -200px;    /* Same horizontal position as the first button */
+            z-index: 100;   /* Ensure the button is on top */
+        }
+
+        .buttonplaceholder2-btn img {
+            width: 50%;  /* Set button size to 50% smaller */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section with header image -->
+    <img src="headerpg3.png" alt="Header Image" class="header-img">
+    
+    <!-- First button with a link to index.html -->
+    <a href="canvas.html" class="buttonplaceholder1-btn">
+        <img src="buttonplaceholder1.png" alt="Button 1">
+    </a>
+    
+    <!-- Second button, positioned 100px above the first button -->
+    <a href="obscene.html" class="buttonplaceholder2-btn">
+        <img src="buttonplaceholder2.png" alt="Button 2">
+    </a>
+</body>
+</html>

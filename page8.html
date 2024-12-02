@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+
+    <style>
+        /* Make the body and html take the full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('maddie.gif') no-repeat center center fixed;
+            background-size: cover;  /* Ensure the GIF covers the whole screen */
+            background-position: center 0px;  /* Move the background down by 30px */
+            margin: 0;
+        }
+
+        /* Spotify iframe container styling */
+        .spotify-container {
+            position: absolute;
+            top: 90px;  /* Move it upwards (previously 150px) */
+            left: 60px;  /* Move it 20px to the right (previously 20px) */
+            width: 320px;  /* Reduce the width by 20% (from 375px to 300px) */
+            height: 320px;  /* Reduce the height by 20% (from 375px to 300px) */
+            z-index: 5;  /* Ensure it stays above the background */
+        }
+
+        /* Button positioning */
+        .nextbrush-btn {
+            position: absolute;
+            bottom: 26px;   /* Adjust this value to position it vertically */
+            left: 20px;    /* Adjust this value to position it horizontally */
+            z-index: 10;    /* Ensure the button is on top */
+        }
+
+        .nextbrush-btn img {
+            width: 102px;  /* Increased the button size */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Spotify Embed -->
+    <div class="spotify-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5fPaCS2EypyQpeSJQzupar?utm_source=generator&theme=0" width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <!-- Next brush button with a link to page3.html -->
+    <a href="index.html" class="nextbrush-btn">
+        <img src="restart.png" alt="Next Brush Button">
+    </a>
+</body>
+</html>
+
+

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+
+    <!-- Removed the clickable link around headerpg2.png -->
+    <style>
+        /* Make the body and html take the full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('boat.gif') no-repeat center center fixed;
+            background-size: 75% auto;  /* Ensure the GIF covers the whole screen */
+            background-position: center 30px;  /* Move the background down by 30px */
+            margin: 0;
+        }
+
+        /* Header image styling */
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+
+        /* Button positioning */
+        .nextbrush-btn {
+            position: absolute;
+            bottom: 29px;   /* Adjust this value to position it vertically */
+            right: 20px;    /* Adjust this value to position it horizontally */
+            z-index: 10;    /* Ensure the button is on top */
+        }
+
+        .nextbrush-btn img {
+            width: 102px;  /* Increased the button size */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section without a link around the header image -->
+    <img src="headerpg7.png" alt="Header Image" class="header-img">
+    
+    <!-- Next brush button with a link to page3.html -->
+    <a href="page8.html" class="nextbrush-btn">
+        <img src="nextmaddie.png" alt="Next Brush Button">
+    </a>
+</body>
+</html>

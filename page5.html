@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotlight Circle Larger Than Revealing Circle</title>
+
+    <style>
+        /* Full-page layout with no margin or padding */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Set the background image */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('illumination.gif') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -2; /* Background behind the overlay */
+        }
+
+        /* Black overlay for the foreground */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black; /* Full black foreground */
+            z-index: -1; /* On top of the background */
+            pointer-events: none; /* Prevent the overlay from interfering with interactions */
+        }
+
+        /* Body set to black, hide default cursor */
+        body {
+            margin: 0;
+            cursor: none; /* Hide the default cursor */
+            overflow: hidden;
+            position: relative; /* For positioning flashlight */
+        }
+
+        /* Flashlight effect (small spotlight circle) */
+        .flashlight-small {
+            position: absolute;
+            width: 400px; /* Larger spotlight size */
+            height: 400px; /* Larger spotlight size */
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent white for spotlight */
+            border-radius: 50%; /* Circular spotlight */
+            pointer-events: none; /* Don't interfere with other elements */
+            transform: translate(-50%, -50%); /* Center it on the mouse */
+            transition: 0.1s ease; /* Smooth transition */
+            box-shadow: 0 0 80px rgba(255, 255, 255, 0.4); /* Glow effect for illumination */
+            z-index: 2; /* Above the background */
+        }
+
+        /* Flashlight effect (large revealing circle) */
+        .flashlight-large {
+            position: absolute;
+            width: 300px; /* Smaller revealing size */
+            height: 300px; /* Smaller revealing size */
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent white for revealing the background */
+            border-radius: 50%; /* Circular revealing spotlight */
+            pointer-events: none; /* Don't interfere with other elements */
+            transform: translate(-50%, -50%); /* Center it on the mouse */
+            transition: 0.1s ease; /* Smooth transition */
+            box-shadow: 0 0 80px rgba(255, 255, 255, 0.4); /* Glow effect for illumination */
+            z-index: 1; /* Behind the spotlight */
+        }
+
+        /* Optional: Styling for the header image */
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Button styling */
+        .nextbrush-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            z-index: 10; /* Ensure button is clickable above the flashlight effect */
+        }
+
+        .nextbrush-btn img {
+            width: 110px;
+            height: auto;
+            cursor: pointer; /* Make the cursor a pointer to indicate it's clickable */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background image -->
+    <div class="background"></div>
+
+    <!-- Black overlay (foreground) -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Button to the next page -->
+    <a href="page6.html" class="nextbrush-btn">
+        <img src="nextknot.png" alt="Next Brush Button">
+    </a>
+
+    <!-- Flashlight effect element (large revealing circle) -->
+    <div class="flashlight-large" id="flashlight-large"></div>
+
+    <!-- Smaller Flashlight effect element (larger spotlight circle) -->
+    <div class="flashlight-small" id="flashlight-small"></div>
+
+    <script>
+        // JavaScript to make the flashlight follow the mouse
+        const flashlightLarge = document.getElementById('flashlight-large');
+        const flashlightSmall = document.getElementById('flashlight-small');
+        const overlay = document.getElementById('overlay');
+
+        let lastTime = 0;
+        const delay = 15; // 15ms delay to throttle event handling
+
+        // Throttling the mousemove event handler using requestAnimationFrame
+        function handleMouseMove(e) {
+            // Check if enough time has passed before executing again
+            const currentTime = new Date().getTime();
+            if (currentTime - lastTime < delay) {
+                return;
+            }
+            lastTime = currentTime;
+
+            // Get the position of the mouse
+            const x = e.pageX;
+            const y = e.pageY;
+
+            // Position the large circle and small circle at the exact mouse position
+            flashlightLarge.style.left = `${x}px`;
+            flashlightLarge.style.top = `${y}px`;
+
+            flashlightSmall.style.left = `${x}px`;
+            flashlightSmall.style.top = `${y}px`;
+
+            // Apply the "hole" to the overlay to reveal the background with the large circle
+            const xOffset = x;
+            const yOffset = y;
+
+            // Apply the mask to the overlay dynamically to reveal the background
+            overlay.style.maskImage = `radial-gradient(circle at ${xOffset}px ${yOffset}px, transparent 25%, black 25%)`;
+            overlay.style.webkitMaskImage = `radial-gradient(circle at ${xOffset}px ${yOffset}px, transparent 25%, black 25%)`; /* For Safari */
+        }
+
+        // Add the event listener with requestAnimationFrame for better performance
+        document.addEventListener('mousemove', function (e) {
+            requestAnimationFrame(() => handleMouseMove(e));
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

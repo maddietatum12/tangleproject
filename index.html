@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+    <style>
+        /* Reset margin and padding */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('earphones.gif') no-repeat center center fixed;
+            background-size: 95% auto;; /* Ensure the GIF covers the entire screen */
+            background-position: center 0px;  /* Move the background down by 30px */
+            margin: 0;
+        }
+
+        /* Wrapper for the header image */
+        .header-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Header image styling (non-clickable) */
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Position the nextbrush button */
+        .nextbrush-btn {
+            position: absolute;
+            bottom: -8px;   /* Adjust this value to position it vertically */
+            right: -9px;   /* Adjust this value to position it horizontally */
+            z-index: 10;   /* Ensure the button is on top */
+        }
+
+        .nextbrush-btn img {
+            width: 200px;  /* Increased the button size */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header section with the image and button on top -->
+    <div class="header-wrapper">
+        <!-- The header image is no longer wrapped in a link, making it non-clickable -->
+        <img src="headerpg1.png" alt="Header Image" class="header-img">
+        
+        <!-- Only the nextbrush button is clickable and leads to page2.html -->
+        <a href="page2.html" class="nextbrush-btn">
+            <img src="nextbrush.png" alt="Next Brush Button">
+        </a>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+
+    <style>
+        /* Make the body and html take the full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('canvas.gif') no-repeat center center fixed;
+            background-size: 75% auto;  /* Ensure the GIF covers the whole screen */
+            background-position: center 30px;  /* Move the background down by 30px */
+            margin: 0;
+        }
+
+        /* Header image styling */
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Button positioning */
+        .nextburnout-btn {
+            position: absolute;
+            bottom: 30px;  /* Position it 80px from the bottom of the screen */
+            right: 20px;   /* Position it 20px from the right of the screen */
+            z-index: 10;   /* Ensure the button is on top of other elements */
+        }
+
+        .nextburnout-btn img {
+            width: 102px;  /* Increase the button size by 20% (from 85px to 102px) */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section with the header image -->
+    <img src="headerblank.png" alt="Header Image" class="header-img">
+    
+    <!-- Next burnout button with a link to page4.html -->
+    <a href="page4.html" class="nextburnout-btn">
+        <img src="nextburnout.png" alt="Next Burnout Button">
+    </a>
+</body>
+</html>
+
+

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+
+    <style>
+        /* Make the body and html take the full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;  /* Prevent scrolling */
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('thesailor.gif') no-repeat center center fixed;
+            background-size: 75% auto;  /* Ensure the GIF covers the whole screen */
+            background-position: center 30px;  /* Move the background down by 30px */
+            margin: 0;
+        }
+
+        /* Header image styling */
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Button positioning */
+        .nextbrush-btn {
+            position: absolute;
+            bottom: 26px;   /* Adjust this value to position it vertically */
+            right: 20px;    /* Adjust this value to position it horizontally */
+            z-index: 10;    /* Ensure the button is on top */
+        }
+
+        .nextbrush-btn img {
+            width: 102px;  /* Increased the button size */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+
+        /* Popup styling */
+        #video-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            padding: 0;  /* Remove extra padding */
+            background-color: transparent;  /* No background color */
+            border: none;  /* Remove any border */
+        }
+
+        #video-popup iframe {
+            width: 560px;
+            height: 315px;
+            opacity: 0.4;  /* Set the opacity to 40% */
+            border: none;  /* Ensure no border is applied to the iframe */
+        }
+
+        /* Overlay styling (for click-outside-to-close functionality) */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: none;  /* Remove any background to prevent low brightness */
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header section without a link around the header image -->
+    <img src="headerpg6.png" alt="Header Image" class="header-img">
+    
+    <!-- Next brush button with a link to page3.html -->
+    <a href="page7.html" class="nextbrush-btn">
+        <img src="nextboat.png" alt="Next Brush Button">
+    </a>
+
+    <!-- Video Popup -->
+    <div id="overlay"></div>
+    <div id="video-popup">
+        <iframe id="video-iframe" 
+                src="https://www.youtube.com/embed/VOXCtLB5Ksk?si=-sEOjqGEw6f-vjq2&start=25&autoplay=1&rel=0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Load YouTube API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        // Get references to popup and overlay
+        const videoPopup = document.getElementById('video-popup');
+        const overlay = document.getElementById('overlay');
+
+        let player;
+
+        // This function is called when the YouTube API is ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('video-iframe', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // This function is called whenever the player's state changes
+        function onPlayerStateChange(event) {
+            // Check if the video has ended (YT.PlayerState.ENDED is 0)
+            if (event.data === YT.PlayerState.ENDED) {
+                // Hide the video popup when the video finishes
+                videoPopup.style.display = 'none';
+                overlay.style.display = 'none';
+            }
+        }
+
+        // Detect if cursor is near the center of the screen
+        document.addEventListener('mousemove', function(event) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            const distanceX = Math.abs(event.clientX - centerX);
+            const distanceY = Math.abs(event.clientY - centerY);
+
+            // If the mouse is within 200px of the center, show the popup
+            if (distanceX < 200 && distanceY < 200) {
+                videoPopup.style.display = 'block';
+                overlay.style.display = 'block';
+            } else {
+                videoPopup.style.display = 'none';
+                overlay.style.display = 'none';
+            }
+        });
+
+        // Close the popup if the overlay is clicked
+        overlay.addEventListener('click', function() {
+            videoPopup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+

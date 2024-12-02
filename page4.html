@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Background GIF</title>
+
+    <style>
+        /* Make the body and html take the full screen */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;  /* Prevent scrolling when dragging images */
+        }
+
+        /* Set the GIF as a background image */
+        body {
+            background: url('burnout.gif') no-repeat center center fixed;
+            background-size: 75% auto;  /* Ensure the GIF covers the whole screen */
+            background-position: center 35px;  /* Move the background down by 30px */
+        }
+
+        /* Draggable images styling */
+        .draggable {
+            position: absolute;
+            cursor: pointer;
+            z-index: 10;
+            transform: scale(0.65);  /* Scale images to 65% of their original size (35% smaller) */
+        }
+
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Next brush button positioning */
+        .nextbrush-btn {
+            position: absolute;
+            bottom: 20px;   /* Adjust this value to position it vertically */
+            right: 40px;    /* Adjust this value to position it horizontally */
+            z-index: 10;    /* Ensure the button is on top */
+        }
+
+        .nextbrush-btn img {
+            width: 110px;  /* Increased the button size */
+            height: auto;
+            cursor: pointer;  /* Show a pointer cursor to indicate it's clickable */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header section without a link around the header image -->
+    <img src="headerpg4.png" alt="Header Image" class="header-img">
+
+    <!-- Next brush button with a link to page5.html -->
+    <a href="page5.html" class="nextbrush-btn">
+        <img src="nextlightbulb.png" alt="Next Brush Button">
+    </a>
+
+    <!-- Draggable images -->
+    <img src="paper.png" alt="Paper" class="draggable" id="paper" style="top: 100px; left: 100px;">
+    <img src="puterouter.png" alt="Put Router" class="draggable" id="puterouter" style="top: 200px; left: 300px;">
+    <img src="todo.png" alt="To Do" class="draggable" id="todo" style="top: 300px; left: 500px;">
+    <img src="mug.png" alt="Mug" class="draggable" id="mug" style="top: 400px; left: 700px;">
+
+    <script>
+        // Function to make an element draggable
+        function makeDraggable(element) {
+            let offsetX, offsetY;
+
+            element.onmousedown = function(e) {
+                e.preventDefault();
+
+                // Get the initial mouse position
+                offsetX = e.clientX - element.getBoundingClientRect().left;
+                offsetY = e.clientY - element.getBoundingClientRect().top;
+
+                // Move the element as the mouse moves
+                document.onmousemove = function(e) {
+                    element.style.left = e.clientX - offsetX + 'px';
+                    element.style.top = e.clientY - offsetY + 'px';
+                };
+
+                // Stop moving the element when the mouse button is released
+                document.onmouseup = function() {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+            };
+
+            // Prevent text selection when dragging
+            element.ondragstart = function() {
+                return false;
+            };
+        }
+
+        // Make all images with the class 'draggable' draggable
+        let draggableElements = document.querySelectorAll('.draggable');
+        draggableElements.forEach(function(element) {
+            makeDraggable(element);
+        });
+    </script>
+</body>
+</html>
+
+
+
